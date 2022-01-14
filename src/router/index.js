@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import NuevaCuenta from '../views/NuevaCuenta.vue'
+import NuevaTransaccion from '../views/NuevaTransaccion.vue'
+import CuentaTransaccion from '../views/CuentaTransaccion.vue'
 
 Vue.use(VueRouter)
 
@@ -10,6 +13,9 @@ const routes = [
     name: 'Home',
     component: Home
   },
+  {path:'/nuevacuenta/:codCliente', name:'NuevaCuenta',component: NuevaCuenta},
+  {path:'/cuenta-transaccion/:codCliente', name:'CuentaTransaccion',component: CuentaTransaccion},
+  {path:'/nuevatransaccion/:numeroCuenta', name:'NuevaTransaccion',component: NuevaTransaccion},
   {
     path: '/about',
     name: 'About',

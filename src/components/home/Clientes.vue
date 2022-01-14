@@ -1,95 +1,111 @@
 <template>
-  <v-simple-table>
-    <template v-slot:default>
-      <thead>
-        <tr>
-          <th class="text-left">
-            Name
-          </th>
-          <th class="text-left">
-            Calories
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          v-for="item in desserts"
-          :key="item.name"
-        >
-          <td>{{ item.name }}</td>
-          <td>{{ item.calories }}</td>
-        </tr>
-      </tbody>
-    </template>
-  </v-simple-table>
+  <div>
+    <v-simple-table>
+      <template v-slot:default>
+        <thead>
+          <tr>
+            <th class="text-left">
+              DUI
+            </th>
+            <th class="text-left">
+              NOMBRE
+            </th>
+            <th class="text-left">
+              APELLIDOS
+            </th>
+            <th class="text-left">
+              ACCIONES
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            v-for="cliente in clientes"
+            :key="cliente.codCliente"
+          >
+            <td>{{ cliente.dui }}</td>
+            <td>{{ cliente.nombre }}</td>
+            <td>{{ cliente.apellidos }}</td>
+            <td><v-btn
+                  color="warning"
+                  elevation="2"
+                  small
+                  id="editar-usuario"
+                >
+                <v-icon>mdi-pencil</v-icon>
+                </v-btn>
+                <router-link class="mr-2" :to="`/nuevacuenta/${cliente.codCliente}`">
+                <v-btn
+                  color="primary"
+                  elevation="2"
+                  small
+                  id="nueva-cuenta"
+                >
+                
+                <v-icon>mdi-plus</v-icon>
+                </v-btn>
+                </router-link>
+                <router-link class="mr-2" :to="`/cuenta-transaccion/${cliente.codCliente}`">
+                <v-btn
+                  color="success"
+                  elevation="2"
+                  small
+                  id="cuenta-transaccion"
+                >
+                <v-icon>mdi-transfer</v-icon>
+                </v-btn>
+                </router-link>
+            </td>
+          </tr>
+        </tbody>
+      </template>
+    </v-simple-table>
+  </div>
 </template>
 <script>
 
 import axios from 'axios'
+import {eventBus} from '../../main'
 
   export default {
     data () {
       return {
-        desserts: [
+        search: '',
+        headers: [
           {
-            name: 'Frozen Yogurt',
-            calories: 159,
+            text: 'DUI',
+            align: 'start',
+            sortable: false,
+            value: 'dui',
           },
-          {
-            name: 'Ice cream sandwich',
-            calories: 237,
-          },
-          {
-            name: 'Eclair',
-            calories: 262,
-          },
-          {
-            name: 'Cupcake',
-            calories: 305,
-          },
-          {
-            name: 'Gingerbread',
-            calories: 356,
-          },
-          {
-            name: 'Jelly bean',
-            calories: 375,
-          },
-          {
-            name: 'Lollipop',
-            calories: 392,
-          },
-          {
-            name: 'Honeycomb',
-            calories: 408,
-          },
-          {
-            name: 'Donut',
-            calories: 452,
-          },
-          {
-            name: 'KitKat',
-            calories: 518,
-          },
+          { text: 'Nombre', value: 'nombre' },
+          { text: 'Apellidos', value: 'apellidos' }
         ],
-        clientes:[]
+        clientes:[],
+        
       }
     },
     methods:{
         getAllClientes(){
             axios.get('http://localhost:5000/cliente/allclients').
             then(response => {
-                console.log(response);
-                this.clientes = response;
+                
+                this.clientes = response.data;
             }).
             catch((e)=>console.log(e))
-        }
+        },
+        emitirVisible(){
+        eventBus.$emit("modal",true)
+      },
+      cancelarBtn2(){
+
+      },
+      guardarCuenta(){
+
+      }
     },
     mounted() {
         this.getAllClientes();
     },
   }
 </script>
-<style lang="">
-    
-</style>
