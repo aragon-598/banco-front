@@ -1,6 +1,22 @@
 <template>
   <v-container>
-      <h4>Cuentas de {{cliente.nombre}} {{cliente.apellidos}}</h4>
+        <h4>Cuentas de {{cliente.nombre}} {{cliente.apellidos}}</h4>
+        <v-tooltip top>
+            <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                    color=""
+                    elevation="5"
+                    fab
+                    v-bind="attrs"
+                    v-on="on"
+                    small
+                    @click="regresar"
+                >
+                    <v-icon>mdi-arrow-left-bold</v-icon>
+                </v-btn>
+            </template>
+            <span>Regresar</span>
+        </v-tooltip>
       <v-simple-table>
         <template v-slot:default>
         <thead>
@@ -82,6 +98,9 @@ export default {
     methods: {
         nuevaTransaccion(idCuenta){
             this.$router.push({name:'NuevaTransaccion',params:{numeroCuenta:idCuenta}})
+        },
+        regresar(){
+            this.$router.push('/')
         }
     },
 }

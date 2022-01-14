@@ -4,6 +4,9 @@ import Home from '../views/Home.vue'
 import NuevaCuenta from '../views/NuevaCuenta.vue'
 import NuevaTransaccion from '../views/NuevaTransaccion.vue'
 import CuentaTransaccion from '../views/CuentaTransaccion.vue'
+import VistaCliente from '../views/VistaCliente.vue'
+import Login from '../views/Login.vue'
+import VerTransacciones from '../views/VerTransacciones.vue'
 
 Vue.use(VueRouter)
 
@@ -16,6 +19,9 @@ const routes = [
   {path:'/nuevacuenta/:codCliente', name:'NuevaCuenta',component: NuevaCuenta},
   {path:'/cuenta-transaccion/:codCliente', name:'CuentaTransaccion',component: CuentaTransaccion},
   {path:'/nuevatransaccion/:numeroCuenta', name:'NuevaTransaccion',component: NuevaTransaccion},
+  {path:'/login', name:'Login',component: Login},
+  {path:'/inicio/:dui', name:'VistaCliente',component: VistaCliente},
+  {path:'/transacciones/:numeroCuenta', name:'VerTransacciones',component: VerTransacciones},
   {
     path: '/about',
     name: 'About',

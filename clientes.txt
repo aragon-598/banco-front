@@ -29,3 +29,14 @@ methods:{
 
             alert("Transaccion exitosa")
             this.$router.push({name:'CuentaTransaccion',params:{codCliente:this.cuenta.codCliente.codCliente}})
+
+            <v-btn
+                    color="warning"
+                    elevation="2"
+                    small
+                    id="editar-usuario"
+                    v-on="on"
+                    v-bind="attrs"
+                  >
+                    <v-icon>mdi-pencil</v-icon>
+                  </v-btn>

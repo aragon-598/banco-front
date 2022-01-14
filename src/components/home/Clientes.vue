@@ -26,34 +26,40 @@
             <td>{{ cliente.dui }}</td>
             <td>{{ cliente.nombre }}</td>
             <td>{{ cliente.apellidos }}</td>
-            <td><v-btn
-                  color="warning"
-                  elevation="2"
-                  small
-                  id="editar-usuario"
-                >
-                <v-icon>mdi-pencil</v-icon>
-                </v-btn>
+            <td>
                 <router-link class="mr-2" :to="`/nuevacuenta/${cliente.codCliente}`">
-                <v-btn
-                  color="primary"
-                  elevation="2"
-                  small
-                  id="nueva-cuenta"
-                >
-                
-                <v-icon>mdi-plus</v-icon>
-                </v-btn>
+                  <v-tooltip bottom>
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-btn
+                        color="primary"
+                        elevation="2"
+                        small
+                        id="nueva-cuenta"
+                        v-bind="attrs"
+                        v-on="on"
+                      >
+                      <v-icon>mdi-plus</v-icon>
+                      </v-btn>
+                    </template>
+                    <span>Crear nueva cuenta</span>
+                  </v-tooltip>
                 </router-link>
                 <router-link class="mr-2" :to="`/cuenta-transaccion/${cliente.codCliente}`">
-                <v-btn
-                  color="success"
-                  elevation="2"
-                  small
-                  id="cuenta-transaccion"
-                >
-                <v-icon>mdi-transfer</v-icon>
-                </v-btn>
+                <v-tooltip bottom>
+                  <template v-slot:activator="{on,attrs}">
+                    <v-btn
+                      color="success"
+                      elevation="2"
+                      small
+                      v-on="on"
+                      v-bind="attrs"
+                      id="cuenta-transaccion"
+                    >
+                    <v-icon>mdi-transfer</v-icon>
+                    </v-btn>
+                  </template>
+                  <span>Más acciones con cuentas</span>
+                </v-tooltip>
                 </router-link>
             </td>
           </tr>

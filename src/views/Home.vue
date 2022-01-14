@@ -58,13 +58,34 @@
 
 
       <!-- ========================= BOTONES ====================================== -->
-        <v-btn
-          color="green lighten-2"
-          dark
-          @click="dialog=true"
+      <v-row>
+        <!-- ==========================Boton de agregar cliente==================== -->
+        <v-col
+          cols="12"
+          sm="6"
         >
-          Agregar cliente
-        </v-btn>
+          <v-btn
+            color="green lighten-2"
+            dark
+            @click="dialog=true"
+          >
+            Agregar cliente
+          </v-btn>
+        </v-col>
+        <v-col
+          cols="12"
+          sm="6"
+        >
+          <v-btn
+            class="ma-2"
+            color="secondary"
+            @click="vistacliente"
+          >
+            Vista del cliente
+          </v-btn>
+        </v-col>
+      </v-row>
+        
         <br>
         <br>
       <!-- ========================= TABLA ====================================== -->
@@ -150,8 +171,8 @@
         this.nombre="";
         this.apellidos="";
       },
-      guardarCuenta(){
-
+      vistacliente(){
+        this.$router.push('/login');
       }
 
     },
